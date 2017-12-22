@@ -2,18 +2,17 @@
 % Date: 12/12/2017
 
 %% Problems
-% Problem 1
-airline(Name, FlightLegs).
+% Problem 1 & 2
+airline("SAS", FlightLegs).
 
-weatherCondition(clear).
-weatherCondition(cloudy).
-weatherCondition(windy).
-weatherCondition(thunderstorms).
+airport("YYZ", "Toronto", "Canada", clear).
+airport("CPH", "Copenhagen", "Denmark", cloudy).
+airport("MCI", "Kansas City", "USA", windy).
 
-airport(IATA, PrimaryCity, LocatedAt, Weather) :- weatherCondition(Weather).
+airport(IATA, City, Country, Weather) :- weatherCondition(Weather).
 
-seat(seat("27b", "Business", "other", "27a", "27c")).
-seat(seat("50a", "Economy", "window", "none", "50b")).
+seat("27b", "Business", "other", "27a", "27c").
+seat("50a", "Economy", "window", "none", "50b").
 
 model("Airbus A380", Seat, heavy) :- seat(Seat).
 
@@ -29,7 +28,7 @@ aircraft(RegNr, Model, Manufacturer, Type) :- reg(RegNr), model(Model), manufact
 
 passanger(FName, LName, Birthday).
 
-passport(Passenger, Country).
+passport(Passenger, Country) :- passenger(Passenger).
 
 leg(AirportOne, AirportTwo, ServiceAirline, OperatingAirline, Aircraft).
 
@@ -40,8 +39,6 @@ reservation(BookingCode, Origin, Destination, Airline, SeatNr) :- booking(Bookin
 itinerary(Code, Reservations).
 
 visaAgreement(CountryOne, CountryTwo).
-
-% Problem 2
 
 % Problem 3
 allowedAirportDestinations(Passenger, IATA) :- passport(Passenger, Country), airport(IATA, _, Country, _);

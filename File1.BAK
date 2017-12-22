@@ -1,0 +1,18 @@
+% Author:
+% Date: 13/12/2017
+
+airport("YYZ", "Toronto", "Canada", clear).
+airport("CPH", "Copenhagen", "Denmark", cloudy).
+airport("MCI", "Kansas City", "USA", windy).
+
+passenger("ddmmyy-xxxx", "Jacob", "Mortensen", "dd.mm.yyyy").
+
+passport("ddmmyy-xxxx", "Denmark").
+
+visaAgreement("Denmark", "Canada").
+
+allowedAirportDestinations(CPR, IATA) :- passenger(CPR, _, _, _), passport(CPR, Country), airport(IATA, _, Country, _);
+                                         passenger(CPR, _, _, _), passport(CPR, Country), visaAgreement(Country, OtherCountry), airport(IATA, _, OtherCountry, _);
+                                         passenger(CPR, _, _, _), passport(CPR, Country), visaAgreement(OtherCountry, Country), airport(IATA, _, OtherCountry, _).
+                                         
+illegalReservation(CPR) :- booking(BookingCode, CPR), reservation(BookingCode, _, Destination, _, _), not allowedAirportDestination(CPR, Destination);
