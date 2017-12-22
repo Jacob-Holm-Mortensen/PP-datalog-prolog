@@ -20,7 +20,6 @@ airport("MCI", "Kansas City", "USA", windy).
 aircraft("ZY-JJO", "Airbus A380", "Airbus").
 aircraft("OY-JJO", "Airbus A380", "Airbus").
 aircraft("XY-JJO", "Airbus A380", "Airbus").
-
 aircraft("BB-JJO", "Boeing 777", "Boeing").
 
 %% Aircraft models
